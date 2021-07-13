@@ -6,6 +6,6 @@
 
 ## demo
 
-![mainUI1](pic\mainUI1.png)
+![mainUI1](pic/mainUI1.png)
 
-![mainUI2](pic\mainUI2.png)
+![mainUI2](pic/mainUI2.png)
