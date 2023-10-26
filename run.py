@@ -171,13 +171,14 @@ class Stream(QObject):
 class MainUi(QMainWindow, Ui_MainWindow):
     def init_ui(self):
         # 右侧label块
-        sequence = [18, 2, 1, 0, 19, 5, 4, 3, 20, 8, 7, 6, 21, 11, 10, 9, 22, 14, 13, 12, 23, 17, 16, 15]
+        sequence = [25, 19, 13, 7, 1, 26, 20, 14, 8, 2, 27, 21, 15, 9, 3, 28, 22, 16, 10, 4, 29, 23, 17, 11, 5, 30, 24,
+                    18, 12, 6]
         labels = ['crop', 'season', 'timestamp', 'operation']
 
         self.farm_land_table.setEditTriggers(QTableView.NoEditTriggers)
         self.farm_land_table.setSelectionMode(QAbstractItemView.SingleSelection)
         self.farm_land_table.setRowCount(6)
-        self.farm_land_table.setColumnCount(4)
+        self.farm_land_table.setColumnCount(5)
         self.farm_land_table.horizontalHeader().setVisible(False)
         self.farm_land_table.verticalHeader().setVisible(False)
 
@@ -188,7 +189,7 @@ class MainUi(QMainWindow, Ui_MainWindow):
             oneItem = QTableWidgetItem(f'土地{value}')
             oneItem.setTextAlignment(Qt.AlignHCenter)
 
-            self.farm_land_table.setItem(it // 4, it % 4, oneItem)
+            self.farm_land_table.setItem(it // 5, it % 5, oneItem)
 
         # 下方status_bar
         self.nowtime_title = QLabel()
@@ -254,7 +255,8 @@ class MainUi(QMainWindow, Ui_MainWindow):
         return '%s%02d:%02d:%02d' % (symbol, h, m, s)
 
     def display_land_info(self):
-        sequence = [3, 2, 1, 7, 6, 5, 11, 10, 9, 15, 14, 13, 19, 18, 17, 23, 22, 21, 0, 4, 8, 12, 16, 20]
+        sequence = [4, 3, 2, 9, 8, 7, 14, 13, 12, 19, 18, 17, 24, 23, 22, 29, 28, 27, 1, 6, 11, 16, 21, 26, 0, 5, 10,
+                    15, 20, 25]
         land_level = [{'desc': '普', 'back': '#FFFFFF', 'backstyle': Qt.SolidPattern, 'fore': '#000000'},
                       {'desc': '红', 'back': '#FFCCCC', 'backstyle': Qt.SolidPattern, 'fore': '#000000'},
                       {'desc': '黑', 'back': '#DEDEDE', 'backstyle': Qt.SolidPattern, 'fore': '#000000'},
@@ -262,7 +264,7 @@ class MainUi(QMainWindow, Ui_MainWindow):
                       {'desc': '紫晶', 'back': '#FFCCE6', 'backstyle': Qt.Dense2Pattern, 'fore': '#000000'},
                       {'desc': '蓝晶', 'back': '#CCE6FF', 'backstyle': Qt.Dense2Pattern, 'fore': '#000000'},
                       {'desc': '黑晶', 'back': '#DEDEDE', 'backstyle': Qt.Dense2Pattern, 'fore': '#000000'}]
-        for it, value in enumerate(self.data['land_info'][:24]):
+        for it, value in enumerate(self.data['land_info'][:30]):
             if value['crop_id'] == 0:
                 oneItem = QTableWidgetItem("空地")
             else:
@@ -290,7 +292,7 @@ class MainUi(QMainWindow, Ui_MainWindow):
             oneItem.setBackground(brush)
             oneItem.setForeground(QColor(land_level[value['land_level']]['fore']))
 
-            self.farm_land_table.setItem(sequence[it] // 4, sequence[it] % 4, oneItem)
+            self.farm_land_table.setItem(sequence[it] // 5, sequence[it] % 5, oneItem)
 
     def display_basic_info(self):
         self.username_val.setText(str(self.data['basic_info']['nickname']))
