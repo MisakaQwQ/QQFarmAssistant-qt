@@ -197,7 +197,7 @@ class DummySystem:
 
     def get_farm_resources(self):
         print('开始加载农场基础配置')
-        response = self.__session.get('http://appbase.qzone.qq.com/cgi-bin/index/appbase_run_unity.cgi?appid=353')
+        response = self.__session.get('https://appbase.qzone.qq.com/cgi-bin/index/appbase_run_unity.cgi?appid=353')
         flash_var = re.findall('var FLASH_VARS = {\n(.*)\n', response.text)[0].strip()
         flash_var = eval('{' + flash_var + '}')
 
